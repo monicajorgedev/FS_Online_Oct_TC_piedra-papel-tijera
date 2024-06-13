@@ -1,3 +1,51 @@
+
+//Opción con el forEach y utilizando el target para acceder al dataset. 
+
+const buttons = document.querySelectorAll("button")
+const contadorUsuario = document.getElementById("contador-usuario")
+const contadorMaquina = document.getElementById("contador-ordenador")
+let contadorU = 0;
+let contadorM = 0;
+
+function getRandomInt() {
+    let numero = Math.floor(Math.random() * 3);
+    let eleccion = "";
+    if(numero == 0) {
+        eleccion = "piedra"
+    } else if (numero == 1) {
+        eleccion = "papel"
+    } else {
+        eleccion = "tijera"
+    } return eleccion
+  }
+
+buttons.forEach(function(btn){
+    btn.addEventListener('click', function(event){
+        const jugadaUser = event.target.dataset.jugada
+        const jugadaMaquina = getRandomInt();
+        if(jugadaUser === "papel" && jugadaMaquina === "tijera" || jugadaUser === "tijera" && jugadaMaquina === "piedra" || jugadaUser === "piedra" && jugadaMaquina === "papel"){
+            contadorM++
+            contadorMaquina.innerHTML = "Tus puntos: " + contadorM + ""
+        } else if(jugadaUser === "papel" && jugadaMaquina === "piedra" || jugadaUser === "tijera" && jugadaMaquina === "papel" || jugadaUser === "piedra" && jugadaMaquina === "tijera" ){
+            contadorU++
+            contadorUsuario.innerHTML = "Puntos de la máquina: " + contadorU + ""
+        } else {
+            let textoEmpate = alert("Resultado empate, vuelve a tirar")
+        } 
+        console.log(jugadaUser);
+        console.log(jugadaMaquina)
+    })
+})
+
+
+
+
+
+
+
+
+/* Este codigo se hizo durante el team challenge
+
 const buttons = document.querySelectorAll("button")
 const piedra = document.getElementById("piedra")
 const papel = document.getElementById("papel")
@@ -66,5 +114,5 @@ tijera.addEventListener("click", function(){
     textoEmpate = alert("Resultado empate, vuelve a tirar")
    } return
 })
-
+*/
 
